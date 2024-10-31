@@ -5,7 +5,7 @@ import * as path from 'path';
 import { HDKey } from '@scure/bip32';
 import chalk from 'chalk';
 
-async function generateWallet() {
+async function createWallet() {
     const mnemonic = generateMnemonic();
     const seed = mnemonicToSeedSync(mnemonic);
     const hdkey = HDKey.fromMasterSeed(seed);
@@ -17,10 +17,10 @@ async function generateWallet() {
     return { address: account.address, privateKey, mnemonic };
 }
 
-async function createWallets(count: number) {
+async function generateWallets(count: number) {
     const chalk = (await import('chalk')).default;
     for (let i = 0; i < count; i++) {
-        await generateWallet();
+        await createWallet();
     }
     console.log(chalk.green.bold(`${count} wallets successfully generated and added to wallets.csv`));
 }
@@ -36,5 +36,5 @@ async function appendToCSV(data: { address: string; privateKey: string; mnemonic
     fs.appendFileSync(filePath, csvLine);
 }
 
-const walletCount = 10;
-createWallets(walletCount).catch(console.error);
+const walletsCount = 10; //change it
+generateWallets(walletsCount).catch(console.error);

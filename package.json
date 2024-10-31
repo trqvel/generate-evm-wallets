@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx generateWallets.ts"
+    "dev": "tsx main.ts"
   },
   "dependencies": {
     "@scure/bip32": "^1.5.0",
